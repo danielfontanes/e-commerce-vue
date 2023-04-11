@@ -77,7 +77,8 @@ table {
 /* VARIABLES */
 :root {
   --primary-color: #ffffff;
-  --secondary-color: #2a69f2;
+  --secondary-color: #41B883;
+  --teciariary-color: #35495E;
 }
 
 /* GENERAL STYLES */
@@ -93,6 +94,7 @@ a {
 
   display: flex;
 }
+
 .main-container{
   display: flex;
     height: 100%;
@@ -108,3 +110,4 @@ a {
 #app > div {
   flex-grow: 1;
 }</style>
+
