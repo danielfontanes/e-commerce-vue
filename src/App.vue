@@ -3,7 +3,7 @@
     <SideMenu />
     <div class="main-container">
       <Header />
-      <router-view class="flex-grow-1" />
+      <router-view/>
       <Footer />
     </div>
   </div>
@@ -32,18 +32,17 @@ export default {
 
 /* VARIABLES */
 :root {
+  /* Colors */
   --primary-color: #ffffff;
   --secondary-color: #787878;
-  --teciariary-color: #464646;
+  --teciariary-color: rgb(70, 70, 70);
   --accent-color: #00A69C;
   
+  /* Radius */
+  --border-radius-m: 1rem;
 }
 
-/* GENERAL STYLES */
-a {
-  text-decoration: none;
-}
-
+/* STYLES App.vue */
 #app {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -58,6 +57,24 @@ a {
   display: flex;
   width: 100%;
   flex-direction: column;
+}
+
+
+/* GENERAL STYLES */
+a {
+  text-decoration: none;
+}
+
+#app main {
+  padding: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-grow: 1;
+}
+#app h1{
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 </style>
 

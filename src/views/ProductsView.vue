@@ -1,5 +1,5 @@
 <template>
-  <main class="about">
+  <main>
     <h1>This is an categorías page</h1>
     <div v-for="(zapatilla, index) in zapatillas" :key="index">
       <p>{{zapatilla.name}}</p>
