@@ -67,8 +67,8 @@ nav a {
 
 nav a.router-link-exact-active,
 nav a.router-link-exact-active svg {
-  color: var(--secondary-color);
-  fill: var(--secondary-color)
+  color: var(--accent-color);
+  fill: var(--accent-color)
 }
 
 nav a.router-link-exact-active:hover,
