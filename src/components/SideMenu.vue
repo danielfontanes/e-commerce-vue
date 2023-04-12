@@ -52,7 +52,7 @@ svg {
 
 nav {
     padding: 30px;
-    background-color: var(--secondary-color);
+    background-color: var(--teciariary-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -61,23 +61,26 @@ nav {
 nav a {
     font-weight: bold;
     color: var(--primary-color);
-    opacity: 0.7;
     display: flex;
     align-items: center;
     padding: 1rem 1rem;
 }
 
-nav a.router-link-exact-active {
-    opacity: 1;
+nav a.router-link-exact-active, nav a.router-link-exact-active svg{
+    color: var(--secondary-color);
+    fill: var(--secondary-color)
+}
+nav a.router-link-exact-active:hover, nav a.router-link-exact-active:hover svg{
+    color: var(--secondary-color);
+    fill: var(--secondary-color)
 }
 nav a:hover{
     background-color: var(--primary-color);
     border-radius: 1rem;
-    opacity: 1;
-    color: var(--secondary-color);
+    color: var(--teciariary-color);
 }
 nav a:hover svg {
-    fill: var(--secondary-color);
+    fill: var(--teciariary-color);
 }
 
 button {
