@@ -4,7 +4,7 @@
     <div class="main-container">
       <Header />
       <router-view class="flex-grow-1" />
-      <footer>FOOTER</footer>
+      <Footer />
     </div>
   </div>
 </template>
@@ -12,12 +12,14 @@
 <script>
 import SideMenu from '@/components/layouts/SideMenu.vue'
 import Header from '@/components/layouts/Header.vue'
+import Footer from './components/layouts/Footer.vue';
 
 export default {
   name: 'App',
   components: {
     SideMenu,
-    Header
+    Header,
+    Footer
   }
 }
 </script>
@@ -31,8 +33,10 @@ export default {
 /* VARIABLES */
 :root {
   --primary-color: #ffffff;
-  --secondary-color: #41B883;
-  --teciariary-color: #35495E;
+  --secondary-color: #787878;
+  --teciariary-color: #464646;
+  --accent-color: #00A69C;
+  
 }
 
 /* GENERAL STYLES */
@@ -52,18 +56,8 @@ a {
 
 .main-container {
   display: flex;
-  height: 100%;
   width: 100%;
   flex-direction: column;
-  min-height: 99.97vh;
 }
-
-#app footer {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-}
-
-#app>div {
-  flex-grow: 1;
-}</style>
+</style>
 
