@@ -63,11 +63,12 @@ export default {
 /* GENERAL STYLES */
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 #app main {
   padding: 1rem;
-  max-width: 1000px;
+  max-width: 1500px;
   margin: 0 auto;
   flex-grow: 1;
 }
@@ -75,6 +76,7 @@ a {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1rem;
+  text-transform: capitalize;
 }
 </style>
 
