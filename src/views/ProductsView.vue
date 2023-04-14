@@ -8,7 +8,7 @@
       </svg>
     </div>
     <h1>{{ this.categoryName }}</h1>
-    <div class="products-container">
+    <div v-if="products.length > 0" class="products-container">
       <div v-for="(product, index) in paginatedProducts" :key="index">
         <a>
           <div class="img-container">
@@ -22,12 +22,12 @@
         </a>
       </div>
     </div>
-    <div class="pagination">
-        <button @click="previousPage" :disabled="currentPage === 1">Anterior</button>
-        <span>Página {{ currentPage }} de {{  totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages">Siguiente</button>
-      </div>
-    <div class="d-none">
+    <Pagination 
+      v-if="products.length > 0"
+      :currentPage.sync="currentPage"
+      :totalPages="totalPages"
+    />
+    <div v-if="products == 0">
       <p>No hay productos disponibles para esta categoría</p>
     </div>
   </main>
@@ -37,8 +37,13 @@
 import router from '@/router';
 import { mapMutations } from 'vuex';
 
+import Pagination from '@/components/Pagination.vue';
+
 export default {
   name: 'ProductsView',
+  components: {
+    Pagination,
+  },
   props: {
     categoryName: {
       type: String,
@@ -76,16 +81,6 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    },
-    previousPage() {
-      if(this.currentPage > 1){
-        this.currentPage--;
-      }
-    },
-    nextPage(){
-      if(this.currentPage < this.totalPages){
-        this.currentPage++;
-      }
     },
     goBack(){
       this.$router.go(-1);
@@ -126,28 +121,6 @@ img{
 .info-container{
   margin: 1rem;
 }
-button{
-  background-color: var(--accent-color);
-  color: var(--primary-color);
-  border-radius: 4px;
-  border: 0px;
-  padding: 1rem 0rem;
-  margin: 1rem;
-}
-
-
-.pagination{
-  display: flex;
-  align-items: center;
-}
-.pagination button{
-  padding: 1rem;
-  margin: 1rem 0rem;
-}
-.pagination span{
-  width: 120px;
-}
-
 .temp-go-back{
   border: 1px solid gray;
   border-radius: 100%;
