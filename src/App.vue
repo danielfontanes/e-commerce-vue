@@ -78,5 +78,15 @@ a {
   margin-bottom: 1rem;
   text-transform: capitalize;
 }
+
+button{
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  border-radius: 4px;
+  border: 0px;
+  padding: 1rem;
+  margin: 1rem;
+}
+
 </style>
 
