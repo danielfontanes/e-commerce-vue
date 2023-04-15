@@ -23,6 +23,12 @@ const routes = [
     name: 'Productos',
     component: () => import(/* webpackChunkName: "CategoriesView" */ '../views/ProductsView.vue'),
     props: true,
+  },
+  {
+    path: '/categorias/:categoryName/:productId',
+    name: 'ProductDetail',
+    component: () => import(/* webpackChunkName: "ProductDetailView" */ '../views/ProductDetailView.vue'),
+    props: true,
   }
 ]
 

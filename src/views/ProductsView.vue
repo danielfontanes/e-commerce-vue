@@ -10,7 +10,7 @@
     <h1>{{ this.categoryName }}</h1>
     <div v-if="products.length > 0" class="products-container">
       <div v-for="(product, index) in paginatedProducts" :key="index">
-        <a>
+        <router-link :to="{ name: 'ProductDetail', params: { categoryName: categoryName, productId: product.id}}">
           <div class="img-container">
             <img :src="product.thumbnail" alt="">
           </div>
@@ -19,7 +19,7 @@
             <p>{{ product.brand }}</p>
           </div>
           <button @click="addProduct(product)">Añadir</button>
-        </a>
+        </router-link>
       </div>
     </div>
     <Pagination 
