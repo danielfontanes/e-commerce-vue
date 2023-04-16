@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SideMenu from '@/components/layouts/SideMenu.vue'
+import SideMenu from '@/components/navigation/SideMenu.vue'
 import Header from '@/components/layouts/Header.vue'
 import Footer from './components/layouts/Footer.vue';
 
