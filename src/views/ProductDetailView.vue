@@ -1,35 +1,32 @@
 <template>
   <main v-if="Object.keys(product).length">
+    <!-- TODO: Poner en componente Breadcrumb.vue -->
     <div class="breadcrumb-e-commerce">
-      <a href="">{{ "Categorias" }}</a>
+      <router-link :to="{ name: 'Categories', params: { categoryName: categoryName}}"> categorías </router-link>
       <span> / </span>
-      <a href="">{{ "Categoria" }}</a>
+      <router-link :to="{ name: 'Products', params: { categoryName: categoryName}}">{{ categoryName }}</router-link>
       <span> / </span>
-      <a href="">{{ "Producto" }}</a>
+      <router-link :to="{ name: 'ProductDetail', params: { categoryName: categoryName, productId: product.id}}">{{ product.title }}</router-link>
     </div>
-    <div class="d-flex gap-3">
-      <div class="images-container">
-        <div class="main-image">
-          <svg v-show="product.images && imageNumber > 0" @click="previousImage" xmlns="http://www.w3.org/2000/svg"
-            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 previous-image">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
-          <img :src="product.images[imageNumber]" alt="">
-          <svg v-show="product.images && imageNumber < product.images.length - 1" @click="nextImage"
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            class="w-6 h-6 next-image">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-          </svg>
-        </div>
-        <div class="images-preview">
-          <div v-for="(productImage, index) in product.images">
-            <img @click="changeImage(index)" :src="productImage" alt="">
-          </div>
-        </div>
-      </div>
+
+    <div class="d-flex gap-5">
+      <ImagesViewer
+        :images="product.images" 
+      />
       <div class="info-container">
         <h1>{{ product.title }}</h1>
+        <p class="text-capitalize">{{ product.brand }}</p>
         <p>{{ product.description }}</p>
+        <Rating
+          :ratingValue="product.rating"
+          class="pb-3 mb-3 border-bottom"
+        />
+        <div class="money">
+          <p>{{ `${product.price}€` }} </p>
+          <p>{{ `${product.discountPercentage}%` }}</p>
+        </div>
+        <p>Only <span class="items">{{ `${product.stock} items` }}</span> left</p>
+        <!-- La categoria no la pongo porque ya aparece en las migas de pan -->
         <button @click="addProduct(product)">Añadir</button>
       </div>
     </div>
@@ -39,11 +36,21 @@
 
 <script>
 import { mapMutations } from 'vuex';
+import Rating from '@/components/Rating.vue';
+import ImagesViewer from '@/components/ImagesViewer.vue';
 
 export default {
   name: 'ProductDetailView',
+  components: {
+    Rating,
+    ImagesViewer,
+  },
   props: {
     productId: {
+      type: String,
+      required: true,
+    },
+    categoryName: {
       type: String,
       required: true,
     }
@@ -51,7 +58,6 @@ export default {
   data() {
     return {
       product: {},
-      imageNumber: 0
     }
   },
   mounted() {
@@ -69,87 +75,49 @@ export default {
           console.log(error);
         });
     },
-    nextImage() {
-      this.imageNumber++;
-    },
-    previousImage() {
-      this.imageNumber--;
-    },
-    changeImage(index){
-      console.log(index);
-      this.imageNumber = index;
-    }
   }
 }
 </script>
 
 <style scoped>
-.images-container{
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 500px;
-}
-.main-image{
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 500px;
-  background-color: #F6F6F6;
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-.main-image svg {
-  width: 3rem;
-  position: absolute;
-  bottom: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem
-}
-.main-image img{
-  max-height: 100%;
-  max-width: 100%;
-  width:100%;
-  object-fit: contain;
-}
-.images-preview{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-.images-preview > div{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1;
-  background-color: #F6F6F6;
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-.images-preview > div img{
-  max-height: 100%;
-  max-width: 100%;
-  width:100%;
-}
-.previous-image {
-  left: 0px;
-}
-.next-image {
-  right: 0px;
-}
-
 .info-container{
   width:500px;
   height: 500px;  
+  text-align: start;
+}
+.info-container p{
+  margin-bottom: 1rem;
 }
 
+.info-container .money{
+  display: flex;
+  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid lightgray;
+}
+.info-container .money p{
+  margin: 0px;
+}
+.info-container .items{
+  font-weight: bold;
+  color: var(--accent-color);
+}
+.info-container button{
+  margin: 0;
+  margin-top: 2rem;
+  width: 50%;
+}
 
 /* TODO: Poner en componente Breadcrumb.vue */
 .breadcrumb-e-commerce {
   display: flex;
   margin: 2rem 0rem;
+  gap: 1rem;
+}
+.breadcrumb-e-commerce a{
+  text-transform: capitalize;
 }
 </style>
