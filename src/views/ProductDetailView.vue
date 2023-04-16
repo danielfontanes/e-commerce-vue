@@ -1,13 +1,6 @@
 <template>
   <main v-if="Object.keys(product).length">
-    <!-- TODO: Poner en componente Breadcrumb.vue -->
-    <div class="breadcrumb-e-commerce">
-      <router-link :to="{ name: 'Categories', params: { categoryName: categoryName}}"> categorías </router-link>
-      <span> / </span>
-      <router-link :to="{ name: 'Products', params: { categoryName: categoryName}}">{{ categoryName }}</router-link>
-      <span> / </span>
-      <router-link :to="{ name: 'ProductDetail', params: { categoryName: categoryName, productId: product.id}}">{{ product.title }}</router-link>
-    </div>
+    <Breadcrumb />
 
     <div class="d-flex gap-5">
       <ImagesViewer
@@ -38,22 +31,20 @@
 import { mapMutations } from 'vuex';
 import Rating from '@/components/Rating.vue';
 import ImagesViewer from '@/components/ImagesViewer.vue';
+import Breadcrumb from '@/components/navigation/Breadcrumb.vue'
 
 export default {
   name: 'ProductDetailView',
   components: {
     Rating,
     ImagesViewer,
+    Breadcrumb
   },
   props: {
     productId: {
       type: String,
       required: true,
     },
-    categoryName: {
-      type: String,
-      required: true,
-    }
   },
   data() {
     return {
@@ -109,15 +100,5 @@ export default {
   margin: 0;
   margin-top: 2rem;
   width: 50%;
-}
-
-/* TODO: Poner en componente Breadcrumb.vue */
-.breadcrumb-e-commerce {
-  display: flex;
-  margin: 2rem 0rem;
-  gap: 1rem;
-}
-.breadcrumb-e-commerce a{
-  text-transform: capitalize;
 }
 </style>
