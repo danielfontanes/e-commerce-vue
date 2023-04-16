@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SideMenu from '@/components/layouts/SideMenu.vue'
+import SideMenu from '@/components/navigation/SideMenu.vue'
 import Header from '@/components/layouts/Header.vue'
 import Footer from './components/layouts/Footer.vue';
 
@@ -37,6 +37,7 @@ export default {
   --secondary-color: #787878;
   --teciariary-color: rgb(70, 70, 70);
   --accent-color: #00A69C;
+  --accent-color-hover: #00c9bc;
   
   /* Radius */
   --border-radius-m: 1rem;
@@ -87,6 +88,10 @@ button{
   padding: 1rem;
   margin: 1rem;
 }
+button:hover{
+  background-color: var(--accent-color-hover);
+}
+
 
 </style>
 

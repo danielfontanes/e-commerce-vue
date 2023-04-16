@@ -3,7 +3,7 @@
     <h1>CATEGORIES</h1>
     <div class="categories-container">
       <div v-for="(category, index) in categories" :key="index">
-        <router-link :to="{ name: 'Productos', params: {categoryName:category}}">
+        <router-link :to="{ name: 'Products', params: {categoryName:category}}">
           <h2>{{ category }}</h2>
         </router-link>
       </div>

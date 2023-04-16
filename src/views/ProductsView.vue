@@ -1,16 +1,12 @@
 <template>
-   <!-- TODO: componetizar Product.vue Pagination.vue -->
+   <!-- TODO: componetizar Product.vue-->
   <main>
-   <!-- TODO: Sustituir por Breadcrumbs.vue -->
-    <div class="temp-go-back" @click="goBack">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-      </svg>
-    </div>
+    <Breadcrumb />
+
     <h1>{{ this.categoryName }}</h1>
     <div v-if="products.length > 0" class="products-container">
       <div v-for="(product, index) in paginatedProducts" :key="index">
-        <a>
+        <router-link :to="{ name: 'ProductDetail', params: { categoryName: categoryName, productName: product.title, productId: product.id.toString()}}">
           <div class="img-container">
             <img :src="product.thumbnail" alt="">
           </div>
@@ -19,7 +15,7 @@
             <p>{{ product.brand }}</p>
           </div>
           <button @click="addProduct(product)">Añadir</button>
-        </a>
+        </router-link>
       </div>
     </div>
     <Pagination 
@@ -34,15 +30,16 @@
 </template>
 
 <script>
-import router from '@/router';
 import { mapMutations } from 'vuex';
 
 import Pagination from '@/components/Pagination.vue';
+import Breadcrumb from '@/components/navigation/Breadcrumb.vue';
 
 export default {
   name: 'ProductsView',
   components: {
     Pagination,
+    Breadcrumb
   },
   props: {
     categoryName: {
