@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 import SideMenu from '@/components/navigation/SideMenu.vue'
 import Header from '@/components/layouts/Header.vue'
 import Footer from './components/layouts/Footer.vue';
@@ -20,6 +22,22 @@ export default {
     SideMenu,
     Header,
     Footer
+  },
+  mounted() {
+    this.getUser();
+  },
+  methods: {
+    ...mapMutations(['loginUser']),
+    getUser() {
+      fetch('https://dummyjson.com/users/1')
+        .then(res => res.json())
+        .then(data => {
+          this.loginUser(data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
   }
 }
 </script>

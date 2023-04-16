@@ -17,30 +17,10 @@
 import { mapState } from 'vuex';
 
 export default {
-  data() {
-    return {
-      user: {}
-    }
-  },
   computed: {
-    ...mapState(['products'])
+    ...mapState(['products']),
+    ...mapState(['user']),
   },
-  mounted() {
-    this.getUser();
-  },
-  methods: {
-    getUser() {
-      fetch('https://dummyjson.com/users/1')
-        .then(res => res.json())
-        .then(data => {
-          this.user = data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-  }
-
 }
 </script>
 
