@@ -41,7 +41,7 @@ export default {
 .rating svg{
   height: 0.9rem;
   color: #F5F611;
-  stroke: black;
+  stroke: gray;
 }
 
 

@@ -1,21 +1,13 @@
 <template>
-   <!-- TODO: componetizar Product.vue-->
   <main>
     <Breadcrumb />
-
     <h1>{{ this.categoryName }}</h1>
     <div v-if="products.length > 0" class="products-container">
       <div v-for="(product, index) in paginatedProducts" :key="index">
-        <router-link :to="{ name: 'ProductDetail', params: { categoryName: categoryName, productName: product.title, productId: product.id.toString()}}">
-          <div class="img-container">
-            <img :src="product.thumbnail" alt="">
-          </div>
-          <div class="info-container">
-            <p>{{ product.title }}</p>
-            <p>{{ product.brand }}</p>
-          </div>
-          <button @click="addProduct(product)">Añadir</button>
-        </router-link>
+        <ProductCard 
+          :product="product"
+          :categoryName="categoryName"
+        />
       </div>
     </div>
     <Pagination 
@@ -34,12 +26,14 @@ import { mapMutations } from 'vuex';
 
 import Pagination from '@/components/Pagination.vue';
 import Breadcrumb from '@/components/navigation/Breadcrumb.vue';
+import ProductCard from '@/components/ProductCard.vue';
 
 export default {
   name: 'ProductsView',
   components: {
     Pagination,
-    Breadcrumb
+    Breadcrumb,
+    ProductCard
   },
   props: {
     categoryName: {
@@ -79,9 +73,6 @@ export default {
           console.log(error);
         });
     },
-    goBack(){
-      this.$router.go(-1);
-    }
   }
 }
 </script>
@@ -92,42 +83,7 @@ export default {
   gap: 1rem;
   min-height: 790px;
 }
-a{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 4px;
-  border: 1px solid rgb(146, 146, 146);
-  background-color: white;
-  width: 380px;
-  height: 380px;
-}
-.img-container{
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #eaeaea;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-}
-img{
-  max-width: 100%;
-  max-height: 100%;
-}
 .info-container{
   margin: 1rem;
-}
-.temp-go-back{
-  border: 1px solid gray;
-  border-radius: 100%;
-  width: fit-content;
-  padding: 1rem;
-  background-color: var(--accent-color);
-  color: white;
-  cursor: pointer;
-}
-.temp-go-back svg{
-  width: 2rem;
 }
 </style>
