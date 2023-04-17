@@ -11,17 +11,10 @@
 
       <div class="d-flex gap-4">
         <UserProfile/>
-
-        <!-- TODO: Componetizar -->
         <div class="d-flex flex-column gap-4">
           <UserAdress />
-          <div class="user-bank-info">
-            <p><span>Fecha de vencimiento de la tarjeta: </span>{{ user.bank.cardExpire }}</p>
-            <p><span>Número de tarjeta: </span>{{ user.bank.cardNumber }}</p>
-            <p><span>Tipo de tarjeta: </span>{{ user.bank.cardType }}</p>
-            <p><span>Moneda: </span>{{ user.bank.currency }}</p>
-            <p><span>IBAN: </span>{{ user.bank.iban }}</p>
-          </div>
+          <UserBank />
+          <UserCompany />
           <div class="user-company-info">
             <p><span>Nombre de la compañía: </span>{{ user.company.name }}</p>
             <p><span>Departamento: </span>{{ user.company.department }}</p>
@@ -49,6 +42,7 @@
 <script>
 import UserProfile from '@/components/user/UserProfile.vue';
 import UserAdress from '@/components/user/UserAdress.vue';
+import UserBank from '@/components/user/UserBank.vue';
 
 import { mapState } from 'vuex';
 
@@ -56,7 +50,8 @@ export default {
   name: 'Landing',
   components: {
     UserProfile,
-    UserAdress
+    UserAdress,
+    UserBank
   },
   data() {
     return {
@@ -104,11 +99,6 @@ export default {
 }
 </script>
 <style scoped>
-
-span {
-  font-weight: bold;
-}
-
 .quote,
 .user-primary-info,
 .user-adress-info,

@@ -33,4 +33,7 @@ export default {
 svg {
   width: 2rem;
 }
+span {
+  font-weight: bold;
+}
 </style>
