@@ -80,6 +80,9 @@ export default {
 
 
 /* GENERAL STYLES */
+* {
+  text-align: start;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -99,6 +102,7 @@ a {
 }
 
 button{
+  text-align: center;
   background-color: var(--accent-color);
   color: var(--primary-color);
   border-radius: 4px;

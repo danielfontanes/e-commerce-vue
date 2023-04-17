@@ -5,6 +5,7 @@
       <img :src="product.thumbnail" alt="">
     </div>
     <div class="info-container">
+      <!-- TODO: Mejorar información que se muestra -->
       <p>{{ product.title }}</p>
       <p>{{ product.brand }}</p>
     </div>
@@ -37,6 +38,9 @@ export default {
   background: #eaeaea;
   border-radius: 4px;
   margin-bottom: 1rem;
+}
+.info-container{
+  padding: 1rem;
 }
 img {
   max-width: 100%;
