@@ -4,6 +4,7 @@
     <div class="categories-container">
       <div v-for="(category, index) in categories" :key="index">
         <router-link :to="{ name: 'Products', params: {categoryName:category}}">
+          <!-- TODO: Añadir imagenes -->
           <h2>{{ category }}</h2>
         </router-link>
       </div>
