@@ -2,18 +2,18 @@
   <main>
     <h1>CATEGORIES</h1>
     <div class="categories-container">
-      <div v-for="(category, index) in categories" :key="index">
-        <router-link :to="{ name: 'Products', params: {categoryName:category}}">
-          <!-- TODO: Añadir imagenes -->
-          <h2>{{ category }}</h2>
-        </router-link>
-      </div>
+      <CategoryCard v-for="(category, index) in categories" :key="index" :category="category" />
     </div>
   </main>
 </template>
   
 <script>
+import CategoryCard from '@/components/cards/CategoryCard.vue'
+
 export default {
+  components: {
+    CategoryCard
+  },
   data() {
     return {
       categories: {}
@@ -42,19 +42,5 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-}
-
-a {
-  display:grid;
-  place-items: center;
-  border: 1px solid #D5D9D9;
-  padding: 1rem;
-  border-radius: var(--border-radius-m);
-  aspect-ratio: 1;
-  text-transform: capitalize;
-}
-a:hover{
-  background-color: var(--accent-color);;
-  color: white;
 }
 </style>
