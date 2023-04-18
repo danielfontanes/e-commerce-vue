@@ -80,6 +80,7 @@ export default {
 .products-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
   gap: 1rem;
   min-height: 790px;
 }

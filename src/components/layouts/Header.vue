@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img src="@/assets/logo.png" alt="imagen del logo">
+    <img src="@/assets/images/logo.png" alt="imagen del logo">
     <p> {{ user.username ? `Hola ${user.username}` : 'Hola ....' }}</p>
     <div class="cart-container">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

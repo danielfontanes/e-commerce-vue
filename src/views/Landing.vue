@@ -18,8 +18,8 @@
         </div>
       </div>
 
-      <div class="user-recomended-categories">
-        <div v-for="(category, index) in categories" :key="index">
+      <div class="user-recomended-categories card d-flex">
+        <div v-for="(category, index) in categories" :key="index" class="d-flex">
           <p>{{ category }}</p>
         </div>
       </div>
@@ -99,5 +99,12 @@ export default {
 blockquote {
   font-style: italic;
   padding: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  background-color: lightblue;
+}
+cite{
+  font-weight: bold;
+  margin-top: 1rem;
 }
 </style>
