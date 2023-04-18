@@ -31,11 +31,13 @@ header {
   align-items: center;
   height: 100px;
   padding: 0.5rem 2rem;
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  background-color: var(--primary-color);
+  border-bottom: 1px solid gray;
+  margin: 1rem;
 }
 .cart-container{
   position: relative;
+  color: var(--accent-color);
 }
 .cart-number{
   display: grid;

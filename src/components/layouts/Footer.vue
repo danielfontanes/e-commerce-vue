@@ -14,4 +14,7 @@ footer {
   color: var(--primary-color);
   padding: 1rem;
 }
+p{
+  text-align: center;
+}
 </style>
