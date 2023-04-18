@@ -9,14 +9,14 @@
         </blockquote>
       </div>
 
-      <div class="d-flex gap-4">
+      <div class="user-info-data gap-4">
         <div class="d-flex flex-column gap-4">
           <UserProfile class="card" />
           <UserBank class="card" />
         </div>
         <div class="d-flex flex-column gap-4 w-100">
-          <UserAdress class="card" />
-          <UserCompany class="card" />
+          <UserAdress class="card h-100" />
+          <UserCompany class="card h-100" />
         </div>
       </div>
 
@@ -104,6 +104,9 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+}
+.user-info-data{
+  display: flex;
 }
 
 blockquote {
