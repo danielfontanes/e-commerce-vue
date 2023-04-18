@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user && user.bank" class="user-bank-info">
+  <div v-if="user && user.bank" class="user-bank-info d-flex">
     <div class="d-flex align-items-center mb-3">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
         className="w-6 h-6">

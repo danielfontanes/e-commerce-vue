@@ -10,17 +10,20 @@
       </div>
 
       <div class="d-flex gap-4">
-        <UserProfile class="card"/>
         <div class="d-flex flex-column gap-4">
-          <UserAdress class="card"/>
-          <UserBank class="card"/>
-          <UserCompany class="card"/>
+          <UserProfile class="card" />
+          <UserBank class="card" />
+        </div>
+        <div class="d-flex flex-column gap-4 w-100">
+          <UserAdress class="card" />
+          <UserCompany class="card" />
         </div>
       </div>
 
-      <div class="user-recomended-categories card d-flex">
-        <div v-for="(category, index) in categories" :key="index" class="d-flex">
-          <p>{{ category }}</p>
+      <div class="card">
+        <h2 class="fw-bold fs-5 mb-2">Categorías Recomendadas</h2>
+        <div class="user-recomended-categories">
+          <CategoryCard v-for="(category, index) in categories" :key="index" :category="category" />
         </div>
       </div>
     </div>
@@ -33,6 +36,7 @@ import UserProfile from '@/components/user/UserProfile.vue';
 import UserAdress from '@/components/user/UserAdress.vue';
 import UserBank from '@/components/user/UserBank.vue';
 import UserCompany from '@/components/user/UserCompany.vue';
+import CategoryCard from '@/components/cards/CategoryCard.vue';
 
 import { mapState } from 'vuex';
 
@@ -42,7 +46,8 @@ export default {
     UserProfile,
     UserAdress,
     UserBank,
-    UserCompany
+    UserCompany,
+    CategoryCard
   },
   data() {
     return {
@@ -95,6 +100,11 @@ export default {
   border-radius: 20px;
   padding: 2rem;
 }
+.user-recomended-categories{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
 
 blockquote {
   font-style: italic;
@@ -103,7 +113,8 @@ blockquote {
   border-radius: 10px;
   background-color: lightblue;
 }
-cite{
+
+cite {
   font-weight: bold;
   margin-top: 1rem;
 }

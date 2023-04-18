@@ -71,6 +71,8 @@ svg {
   border-radius: 100%;
   overflow: hidden;
   margin-bottom: 1rem;
+  width: 70%;
+  margin: 0 auto;
 }
 
 .user-img-container img {

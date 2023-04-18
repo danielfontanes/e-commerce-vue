@@ -90,7 +90,7 @@ a {
 
 #app main {
   padding: 1rem;
-  width: 1000px;
+  width: 1200px;
   margin: 0 auto;
   flex-grow: 1;
 }
