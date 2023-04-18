@@ -10,7 +10,9 @@
 </template>
 
 <script>
-import SideMenu from '@/components/layouts/SideMenu.vue'
+import { mapMutations } from 'vuex';
+
+import SideMenu from '@/components/navigation/SideMenu.vue'
 import Header from '@/components/layouts/Header.vue'
 import Footer from './components/layouts/Footer.vue';
 
@@ -20,6 +22,22 @@ export default {
     SideMenu,
     Header,
     Footer
+  },
+  mounted() {
+    this.getUser();
+  },
+  methods: {
+    ...mapMutations(['loginUser']),
+    getUser() {
+      fetch('https://dummyjson.com/users/1')
+        .then(res => res.json())
+        .then(data => {
+          this.loginUser(data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
   }
 }
 </script>
@@ -37,6 +55,7 @@ export default {
   --secondary-color: #787878;
   --teciariary-color: rgb(70, 70, 70);
   --accent-color: #00A69C;
+  --accent-color-hover: #00c9bc;
   
   /* Radius */
   --border-radius-m: 1rem;
@@ -61,13 +80,17 @@ export default {
 
 
 /* GENERAL STYLES */
+* {
+  text-align: start;
+}
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 #app main {
   padding: 1rem;
-  max-width: 1000px;
+  width: 1000px;
   margin: 0 auto;
   flex-grow: 1;
 }
@@ -75,6 +98,22 @@ a {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1rem;
+  text-transform: capitalize;
 }
+
+button{
+  text-align: center;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  border-radius: 4px;
+  border: 0px;
+  padding: 1rem;
+  margin: 1rem;
+}
+button:hover{
+  background-color: var(--accent-color-hover);
+}
+
+
 </style>
 

@@ -2,8 +2,11 @@
   <main>
     <h1>CATEGORIES</h1>
     <div class="categories-container">
-      <div v-for="(category, index) in categories" :key="index" class="category-card">
-        <h2>{{ category }}</h2>
+      <div v-for="(category, index) in categories" :key="index">
+        <router-link :to="{ name: 'Products', params: {categoryName:category}}">
+          <!-- TODO: Añadir imagenes -->
+          <h2>{{ category }}</h2>
+        </router-link>
       </div>
     </div>
   </main>
@@ -41,7 +44,7 @@ export default {
   gap: 1rem;
 }
 
-.category-card {
+a {
   display:grid;
   place-items: center;
   border: 1px solid #D5D9D9;
@@ -50,8 +53,8 @@ export default {
   aspect-ratio: 1;
   text-transform: capitalize;
 }
-.category-card:hover{
-  background-color: var(--teciariary-color);;
+a:hover{
+  background-color: var(--accent-color);;
   color: white;
 }
 </style>

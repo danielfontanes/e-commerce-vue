@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img src="@/assets/logo.png" alt="imagen del logo">
+    <img src="@/assets/images/logo.png" alt="imagen del logo">
     <p> {{ user.username ? `Hola ${user.username}` : 'Hola ....' }}</p>
     <div class="cart-container">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -17,30 +17,10 @@
 import { mapState } from 'vuex';
 
 export default {
-  data() {
-    return {
-      user: {}
-    }
-  },
   computed: {
-    ...mapState(['products'])
+    ...mapState(['products']),
+    ...mapState(['user']),
   },
-  mounted() {
-    this.getUser();
-  },
-  methods: {
-    getUser() {
-      fetch('https://dummyjson.com/users/1')
-        .then(res => res.json())
-        .then(data => {
-          this.user = data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-  }
-
 }
 </script>
 

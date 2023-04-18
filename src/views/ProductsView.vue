@@ -1,11 +1,22 @@
 <template>
   <main>
-    <h1>This is an categorías page</h1>
-    <div v-for="(zapatilla, index) in zapatillas" :key="index">
-      <p>{{zapatilla.name}}</p>
-      <p>{{zapatilla.brand}}</p>
-      <p>{{zapatilla.category}}</p>
-      <button @click="addProduct(zapatilla)">ADD CART</button>
+    <Breadcrumb />
+    <h1>{{ this.categoryName }}</h1>
+    <div v-if="products.length > 0" class="products-container">
+      <div v-for="(product, index) in paginatedProducts" :key="index">
+        <ProductCard 
+          :product="product"
+          :categoryName="categoryName"
+        />
+      </div>
+    </div>
+    <Pagination 
+      v-if="products.length > 0"
+      :currentPage.sync="currentPage"
+      :totalPages="totalPages"
+    />
+    <div v-if="products == 0">
+      <p>No hay productos disponibles para esta categoría</p>
     </div>
   </main>
 </template>
@@ -13,21 +24,67 @@
 <script>
 import { mapMutations } from 'vuex';
 
+import Pagination from '@/components/Pagination.vue';
+import Breadcrumb from '@/components/navigation/Breadcrumb.vue';
+import ProductCard from '@/components/ProductCard.vue';
+
 export default {
-  name: 'HelloWorld',
+  name: 'ProductsView',
+  components: {
+    Pagination,
+    Breadcrumb,
+    ProductCard
+  },
   props: {
-    msg: String
+    categoryName: {
+      type: String,
+      required: true,
+    }
   },
   data() {
     return {
-      zapatillas: [
-        { name: 'puma33', brand: 'puma', category: 'zapatillas' },
-        { name: 'adidas air', brand: 'adidas', category: 'zapatillas' }
-      ]
+      products: [],
+      currentPage: 1,
+      itemsPerPage: 4,
     }
   },
+  computed :{
+    paginatedProducts() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.products.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.products.length / this.itemsPerPage);
+    }
+  },
+  mounted() {
+    this.getProducts();
+  },
   methods: {
-    ...mapMutations(['addProduct'])
+    ...mapMutations(['addProduct']),
+    getProducts() {
+      fetch(`https://dummyjson.com/products/category/${this.categoryName}`)
+        .then(res => res.json())
+        .then(data => {
+          this.products = data.products;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
   }
 }
 </script>
+<style scoped>
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  gap: 1rem;
+  min-height: 790px;
+}
+.info-container{
+  margin: 1rem;
+}
+</style>
