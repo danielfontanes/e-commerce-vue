@@ -16,20 +16,19 @@
 </template>
   
 <script>
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/vue-loading.css";
+import loadingMixin from '@/mixins/loadingMixin.js';
 
 import CategoryCard from '@/components/cards/CategoryCard.vue'
 
 export default {
+  mixins: [loadingMixin],
+  name: 'CategoriesView',
   components: {
     CategoryCard,
-    Loading
   },
   data() {
     return {
       categories: {},
-      isLoading: true
     }
   },
   created() {
