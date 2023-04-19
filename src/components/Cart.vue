@@ -1,6 +1,6 @@
 <template>
   <div class="cart-container">
-    <div @click="showDropdown = !showDropdown" class="cart-svg-container">
+    <div @click="showDropdown = !showDropdown" class="cart-container cart-svg-container">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
       class="w-6 h-6">
       <path stroke-linecap="round" stroke-linejoin="round"
@@ -8,8 +8,8 @@
       </svg>
       <div class="cart-number">{{ totalProductsInCart }}</div>
     </div>
-    <div v-show="showDropdown" class="dropdown-cart">
-      <div v-if="cart.length > 0">
+    <div v-show="showDropdown">
+      <div v-if="cart.length > 0" class="dropdown-cart">
         <div v-for="(product, index) in cart" :key="index">
           <ItemCartPreview :product="product"/>
         </div>
@@ -48,7 +48,7 @@ export default {
   color: var(--accent-color);
 }
 .cart-svg-container:hover svg,
-.cart-svg-container:hover .cart-number{
+.cart-container:hover .cart-number{
   color: var(--accent-color-hover);
   cursor: pointer;
 }
@@ -63,7 +63,8 @@ export default {
   width: 4rem;
 }
 
-.dropdown-cart{
+.dropdown-cart,
+.empty-cart{
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -78,7 +79,7 @@ export default {
   overflow-y: auto;
 }
 .empty-cart{
-  width: 100px;
+  width: 150px;
   text-align: center;
 }
 </style>
