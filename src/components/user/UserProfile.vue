@@ -67,7 +67,7 @@ svg {
   margin-right: 0.5rem;
 }
 .user-img-container {
-  border: 1px solid gray;
+  border: 1px solid var(--soft-color);
   border-radius: 100%;
   overflow: hidden;
   margin-bottom: 1rem;
@@ -77,6 +77,6 @@ svg {
 
 .user-img-container img {
   width: 100%;
-  background-color: lightgray;
+  background-color: var(--soft-color-bg);
 }
 </style>

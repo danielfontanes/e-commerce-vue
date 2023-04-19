@@ -20,9 +20,17 @@
         </div>
       </div>
 
-      <div class="card">
-        <h2 class="fw-bold fs-5 mb-2">Categorías Recomendadas</h2>
-        <div class="user-recomended-categories">
+      <div class="user-recomended-categories card">
+        <div class="d-flex mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+          </svg>
+          <h2 class="fw-bold fs-5">Categorías Recomendadas</h2>
+        </div>
+        <div class="user-recomended-categories-container">
           <CategoryCard v-for="(category, index) in categories" :key="index" :category="category" />
         </div>
       </div>
@@ -59,7 +67,7 @@ export default {
   computed: {
     ...mapState(['user']),
   },
-  mounted() {
+  created() {
     this.GetAllData();
   },
   methods: {
@@ -100,25 +108,30 @@ export default {
   border-radius: 20px;
   padding: 2rem;
 }
-.user-recomended-categories{
+
+.user-info-data {
+  display: flex;
+}
+
+.user-recomended-categories-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
-.user-info-data{
-  display: flex;
+.user-recomended-categories svg {
+  width: 1.25rem;
+  margin-right: 0.5rem;
 }
 
-blockquote {
+.home blockquote {
   font-style: italic;
   padding: 10px;
-  border: 1px solid gray;
+  border: 1px solid var(--soft-color);
   border-radius: 10px;
   background-color: lightblue;
 }
 
-cite {
+.home cite {
   font-weight: bold;
   margin-top: 1rem;
-}
-</style>
+}</style>

@@ -115,7 +115,6 @@ export default {
 .preview-images > div img{
   max-height: 100%;
   max-width: 100%;
-  width:100%;
 }
 .previous-image {
   left: 0px;

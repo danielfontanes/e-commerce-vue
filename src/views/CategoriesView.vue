@@ -1,8 +1,11 @@
 <template>
   <main>
     <h1>CATEGORIES</h1>
-    <div class="categories-container">
+    <div  v-if="categories.length > 0" class="categories-container">
       <CategoryCard v-for="(category, index) in categories" :key="index" :category="category" />
+    </div>
+    <div v-else>
+      <p>No se pudieron cargar las categorías. Inténtelo de nuevo más tarde.</p>
     </div>
   </main>
 </template>
@@ -19,7 +22,7 @@ export default {
       categories: {}
     }
   },
-  mounted() {
+  created() {
     this.getCategories();
   },
   methods: {
@@ -30,7 +33,7 @@ export default {
           this.categories = data;
         })
         .catch(error => {
-          console.log(error);
+          console.log('Error al obtener las categorias', error);
         });
     },
   }
@@ -42,5 +45,15 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+}
+@media screen and (max-width: 1450px) {
+  #app main{
+    width: auto;
+  }
+  .categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 </style>
