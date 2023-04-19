@@ -46,51 +46,47 @@ export default {
 <style scoped>
 svg {
   width: 2rem;
-  color: var(--primary-color);
+  color: var(--accent-color);
 }
 
 nav {
   padding: 30px;
-  background-color: var(--teciariary-color);
+  background-color: var(--primary-color);
+  color: var(--accent-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  border-right: 1px solid var(--soft-color);
 }
 
 nav a {
   font-weight: bold;
-  color: var(--primary-color);
+  border: 1px solid transparent;
   display: flex;
   align-items: center;
   padding: 1rem 1rem;
 }
 
+
 nav a.router-link-exact-active,
-nav a.router-link-exact-active svg {
-  color: var(--accent-color);
-  fill: var(--accent-color)
+nav a.router-link-exact-active svg,
+nav a:hover ,
+nav a:hover svg,
+nav button:hover {
+  color: var(--accent-color-hover);
+  fill: var(--accent-color-hover);
 }
-
-nav a.router-link-exact-active:hover,
-nav a.router-link-exact-active:hover svg {
-  color: var(--secondary-color);
-  fill: var(--secondary-color)
-}
-
-nav a:hover {
-  background-color: var(--primary-color);
+nav a:hover{
   border-radius: 1rem;
-  color: var(--teciariary-color);
+  border: 1px solid var(--accent-color-hover);
 }
 
-nav a:hover svg {
-  fill: var(--teciariary-color);
+nav button:hover{
+  background-color: transparent;
 }
-
 button {
   background-color: transparent;
   border: none;
-  border-bottom: var(--primary-color) 1px solid;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin: 0rem 0rem 1rem 0rem;
 }</style>

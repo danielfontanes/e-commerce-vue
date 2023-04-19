@@ -3,7 +3,7 @@
     <SideMenu />
     <div class="main-container">
       <Header />
-      <router-view/>
+      <router-view />
       <Footer />
     </div>
   </div>
@@ -21,9 +21,9 @@ export default {
   components: {
     SideMenu,
     Header,
-    Footer
+    Footer,
   },
-  mounted() {
+  created() {
     this.getUser();
   },
   methods: {
@@ -36,7 +36,7 @@ export default {
         })
         .catch(error => {
           console.log(error);
-        });
+        })
     },
   }
 }
@@ -56,6 +56,10 @@ export default {
   --teciariary-color: rgb(70, 70, 70);
   --accent-color: #00A69C;
   --accent-color-hover: #00c9bc;
+  --soft-color: lightgray;
+  --soft-color-bg: #F6F6F6;
+
+  --text-soft-color: gray;
   
   /* Radius */
   --border-radius-m: 1rem;
@@ -90,7 +94,7 @@ a {
 
 #app main {
   padding: 1rem;
-  width: 1000px;
+  width: 1200px;
   margin: 0 auto;
   flex-grow: 1;
 }
@@ -113,7 +117,5 @@ button{
 button:hover{
   background-color: var(--accent-color-hover);
 }
-
-
 </style>
 

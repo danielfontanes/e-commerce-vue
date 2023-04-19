@@ -27,7 +27,7 @@ export default{
 .map-container {
   border-radius: 20px;
   overflow: hidden;
-  width: 600px;
+  width: 100%;
 }
 
 .map-container img {

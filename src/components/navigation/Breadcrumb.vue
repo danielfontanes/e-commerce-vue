@@ -46,7 +46,7 @@ export default {
 
 .breadcrumb-e-commerce li {
   text-transform: capitalize;
-  color: gray;
+  color: var(--text-soft-color);
   font-size: 0.9rem;
 }
 svg{

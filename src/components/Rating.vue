@@ -36,12 +36,12 @@ export default {
 .rating{
   display: flex;
   font-size: 0.9rem;
-  color: gray;
+  color: var( --text-soft-color);
 }
 .rating svg{
   height: 0.9rem;
   color: #F5F611;
-  stroke: gray;
+  stroke: var(--soft-color);
 }
 
 

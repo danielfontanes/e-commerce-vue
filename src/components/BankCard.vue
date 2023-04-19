@@ -29,25 +29,25 @@ export default {
 
 <style scoped>
   .card-img{
-    width: 400px;
+    width: 300px;
   }
   .card-expire{
-    bottom: 75px;
-    left: 150px;
+    bottom: 45px;
+    left: 110px;
   }
   .card-number{
     font-size: 1.25rem;
     color: white;
     text-shadow: -1px -1px 0px #333, 1px -1px 0px #333, -1px 1px 0px #333, 1px 1px 0px #333;
-    top: 134px;
-    left: 46px;
+    top: 100px;
+    left: 36px;
   }
   .card-type{
     font-size: 1.5rem;
     color: white;
     text-transform: uppercase;
-    top: 43px;
-    left: 44px;
+    top: 33px;
+    left: 34px;
   }
 
   .card-expire,
