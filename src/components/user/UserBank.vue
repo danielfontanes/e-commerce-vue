@@ -34,7 +34,7 @@ export default {
     BankCard
   },
   computed: {
-    ...mapState(['user']),
+    ...mapState( 'user', ['user']),
   },
 }
 </script>

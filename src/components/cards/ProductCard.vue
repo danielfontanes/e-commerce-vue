@@ -32,7 +32,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['addProduct']),
+    ...mapMutations('cart',['addProduct']),
     navigateToProductDetail(){
       this.$router.push({ name: 'ProductDetail', params: { categoryName: this.categoryName, productName: this.product.title, productId: this.product.id.toString() } })
     },

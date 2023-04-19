@@ -53,7 +53,7 @@ import { mapState } from 'vuex';
 export default {
   name: "UserProfile",
   computed: {
-    ...mapState(['user']),
+    ...mapState( 'user', ['user']),
   },
 }
 </script>

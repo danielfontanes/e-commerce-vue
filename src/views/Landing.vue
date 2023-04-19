@@ -54,8 +54,6 @@ import UserBank from '@/components/user/UserBank.vue';
 import UserCompany from '@/components/user/UserCompany.vue';
 import CategoryCard from '@/components/cards/CategoryCard.vue';
 
-import { mapState } from 'vuex';
-
 export default {
   mixins: [loadingMixin],
   name: 'Landing',
@@ -71,9 +69,6 @@ export default {
       quote: {},
       categories: []
     }
-  },
-  computed: {
-    ...mapState(['user']),
   },
   created() {
     this.GetAllData();
