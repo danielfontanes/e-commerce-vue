@@ -41,7 +41,7 @@ export default {
     Map
   },
   computed: {
-    ...mapState(['user']),
+    ...mapState( 'user', ['user']),
   },
 }
 

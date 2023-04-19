@@ -27,7 +27,7 @@ export default {
     this.getUser();
   },
   methods: {
-    ...mapMutations(['loginUser']),
+    ...mapMutations( 'user', ['loginUser']),
     getUser() {
       fetch('https://dummyjson.com/users/1')
         .then(res => res.json())

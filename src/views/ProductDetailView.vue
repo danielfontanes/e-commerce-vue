@@ -68,16 +68,16 @@ export default {
   },
   computed: {
     discountedPrice() {
-    const discount = this.product.discountPercentage / 100;
-    const priceWithDiscount = this.product.price - (this.product.price * discount);
-    return priceWithDiscount.toFixed(2);
-  },
+      const discount = this.product.discountPercentage / 100;
+      const priceWithDiscount = this.product.price - (this.product.price * discount);
+      return priceWithDiscount.toFixed(2);
+    },
   },
   created() {
     this.getProduct();
   },
   methods: {
-    ...mapMutations(['addProduct']),
+    ...mapMutations( 'cart', ['addProduct']),
     getProduct() {
       fetch(`https://dummyjson.com/products/${this.productId}`)
         .then(res => res.json())
