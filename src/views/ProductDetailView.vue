@@ -1,34 +1,38 @@
 <template>
   <main>
     <Breadcrumb />
-
-    <div v-if="Object.keys(this.product).length > 0" class="d-flex gap-5">
-      <ImagesViewer
-        :images="product.images" 
-      />
-      <div class="info-container">
-        <h1 class="text-capitalize">{{ product.title }}</h1>
-        <p class="text-capitalize">{{ product.brand }}</p>
-        <p>{{ product.description }}</p>
-        <Rating
-          :ratingValue="product.rating"
-          class="pb-4 mb-4 border-bottom"
+    <Loading
+      :active.sync="isLoading"
+    />
+    <div v-if="!isLoading">
+      <div v-if="Object.keys(this.product).length > 0" class="d-flex gap-5">
+        <ImagesViewer
+          :images="product.images" 
         />
-        <div class="money">
-          <p class="product-price text-decoration-line-through">{{ `${product.price}€` }} </p>
-          <p class="product-price-whit-discount">{{ `${discountedPrice}€` }} </p>
-          <p>{{ `${product.discountPercentage}%` }}</p>
+        <div class="info-container">
+          <h1 class="text-capitalize">{{ product.title }}</h1>
+          <p class="text-capitalize">{{ product.brand }}</p>
+          <p>{{ product.description }}</p>
+          <Rating
+            :ratingValue="product.rating"
+            class="pb-4 mb-4 border-bottom"
+          />
+          <div class="money">
+            <p class="product-price text-decoration-line-through">{{ `${product.price}€` }} </p>
+            <p class="product-price-whit-discount">{{ `${discountedPrice}€` }} </p>
+            <p>{{ `${product.discountPercentage}%` }}</p>
+          </div>
+          <p>Only <span class="items fw-bold">{{ `${product.stock} items` }}</span> left</p>
+          <button 
+            @click="addProduct(product)"
+            class="m-0 mt-2 w-50"
+            >
+          Añadir</button>
         </div>
-        <p>Only <span class="items fw-bold">{{ `${product.stock} items` }}</span> left</p>
-        <button 
-          @click="addProduct(product)"
-          class="m-0 mt-2 w-50"
-          >
-        Añadir</button>
       </div>
-    </div>
-    <div v-else>
-      <p>Fallo en la carga del producto. Intentelo de nuevo más tarde.</p>
+      <div v-else>
+        <p>Fallo en la carga del producto. Intentelo de nuevo más tarde.</p>
+      </div>
     </div>
 
   </main>
@@ -36,6 +40,10 @@
 
 <script>
 import { mapMutations } from 'vuex';
+
+// TODO: Meter en mixin
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 import Rating from '@/components/Rating.vue';
 import ImagesViewer from '@/components/ImagesViewer.vue';
@@ -46,7 +54,8 @@ export default {
   components: {
     Rating,
     ImagesViewer,
-    Breadcrumb
+    Breadcrumb,
+    Loading
   },
   props: {
     productId: {
@@ -57,6 +66,7 @@ export default {
   data() {
     return {
       product: {},
+      isLoading: true
     }
   },
   computed: {
@@ -79,6 +89,9 @@ export default {
         })
         .catch(error => {
           console.log(error);
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     },
   }
