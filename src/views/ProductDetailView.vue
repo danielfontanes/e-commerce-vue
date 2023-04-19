@@ -41,21 +41,19 @@
 <script>
 import { mapMutations } from 'vuex';
 
-// TODO: Meter en mixin
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/vue-loading.css";
+import loadingMixin from '@/mixins/loadingMixin.js';
 
 import Rating from '@/components/Rating.vue';
 import ImagesViewer from '@/components/ImagesViewer.vue';
 import Breadcrumb from '@/components/navigation/Breadcrumb.vue'
 
 export default {
+  mixins: [loadingMixin],
   name: 'ProductDetailView',
   components: {
     Rating,
     ImagesViewer,
     Breadcrumb,
-    Loading
   },
   props: {
     productId: {
@@ -66,7 +64,6 @@ export default {
   data() {
     return {
       product: {},
-      isLoading: true
     }
   },
   computed: {

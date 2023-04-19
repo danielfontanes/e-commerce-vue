@@ -46,8 +46,7 @@
 </template>
 
 <script>
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/vue-loading.css";
+import loadingMixin from '@/mixins/loadingMixin.js';
 
 import UserProfile from '@/components/user/UserProfile.vue';
 import UserAdress from '@/components/user/UserAdress.vue';
@@ -58,6 +57,7 @@ import CategoryCard from '@/components/cards/CategoryCard.vue';
 import { mapState } from 'vuex';
 
 export default {
+  mixins: [loadingMixin],
   name: 'Landing',
   components: {
     UserProfile,
@@ -65,11 +65,9 @@ export default {
     UserBank,
     UserCompany,
     CategoryCard,
-    Loading
   },
   data() {
     return {
-      isLoading: true,
       quote: {},
       categories: []
     }

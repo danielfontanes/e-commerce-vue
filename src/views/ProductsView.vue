@@ -27,20 +27,19 @@
 </template>
 
 <script>
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/vue-loading.css";
+import loadingMixin from '@/mixins/loadingMixin.js';
 
 import Pagination from '@/components/Pagination.vue';
 import Breadcrumb from '@/components/navigation/Breadcrumb.vue';
 import ProductCard from '@/components/cards/ProductCard.vue';
 
 export default {
+  mixins: [loadingMixin],
   name: 'ProductsView',
   components: {
     Pagination,
     Breadcrumb,
     ProductCard,
-    Loading
   },
   props: {
     categoryName: {
@@ -53,7 +52,6 @@ export default {
       products: [],
       currentPage: 1,
       itemsPerPage: 3,
-      isLoading: true
     }
   },
   computed :{
