@@ -2,7 +2,11 @@
   <main>
     <Breadcrumb />
     <h1>{{ categoryName ? categoryName : "Categoría" }}</h1>
-    <div v-if="products.length > 0" class="products-container">
+    <Loading
+        :active.sync="isLoading"
+    />
+    <div v-if="!isLoading">
+      <div v-if="products.length > 0" class="products-container">
       <div v-for="(product, index) in paginatedProducts" :key="index">
         <ProductCard 
           :product="product"
@@ -18,10 +22,14 @@
     <div v-if="products == 0">
       <p>No hay productos disponibles para esta categoría</p>
     </div>
+    </div>
   </main>
 </template>
 
 <script>
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
+
 import Pagination from '@/components/Pagination.vue';
 import Breadcrumb from '@/components/navigation/Breadcrumb.vue';
 import ProductCard from '@/components/cards/ProductCard.vue';
@@ -31,7 +39,8 @@ export default {
   components: {
     Pagination,
     Breadcrumb,
-    ProductCard
+    ProductCard,
+    Loading
   },
   props: {
     categoryName: {
@@ -44,6 +53,7 @@ export default {
       products: [],
       currentPage: 1,
       itemsPerPage: 3,
+      isLoading: true
     }
   },
   computed :{
@@ -68,6 +78,9 @@ export default {
         })
         .catch(error => {
           console.log(error);
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     },
   }

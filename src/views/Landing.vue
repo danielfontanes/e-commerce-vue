@@ -1,7 +1,13 @@
 <template>
   <main class="home">
     <!-- USER INFO -->
-    <div class="user-info d-flex flex-column gap-4">
+    <Loading
+        :active.sync="isLoading"
+      />
+    <div
+      v-if="!isLoading" 
+      class="user-info d-flex flex-column gap-4"
+    >
       <div class="quote">
         <blockquote>
           <p>{{ quote.quote }}</p>
@@ -40,6 +46,9 @@
 </template>
 
 <script>
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
+
 import UserProfile from '@/components/user/UserProfile.vue';
 import UserAdress from '@/components/user/UserAdress.vue';
 import UserBank from '@/components/user/UserBank.vue';
@@ -55,11 +64,12 @@ export default {
     UserAdress,
     UserBank,
     UserCompany,
-    CategoryCard
+    CategoryCard,
+    Loading
   },
   data() {
     return {
-      loading: true,
+      isLoading: true,
       quote: {},
       categories: []
     }
@@ -82,8 +92,9 @@ export default {
           console.log(error);
         })
         .finally(() => {
-          this.loading = false;
+          this.isLoading = false;
         });
+  
     },
     getQuote() {
       return fetch('https://dummyjson.com/quotes/random')

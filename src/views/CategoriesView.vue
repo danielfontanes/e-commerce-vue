@@ -1,25 +1,35 @@
 <template>
   <main>
     <h1>CATEGORIES</h1>
-    <div  v-if="categories.length > 0" class="categories-container">
-      <CategoryCard v-for="(category, index) in categories" :key="index" :category="category" />
-    </div>
-    <div v-else>
-      <p>No se pudieron cargar las categorías. Inténtelo de nuevo más tarde.</p>
+    <Loading
+        :active.sync="isLoading"
+    />
+    <div v-if="!isLoading">
+      <div  v-if="categories.length > 0" class="categories-container">
+        <CategoryCard v-for="(category, index) in categories" :key="index" :category="category" />
+      </div>
+      <div v-else>
+        <p>No se pudieron cargar las categorías. Inténtelo de nuevo más tarde.</p>
+      </div>
     </div>
   </main>
 </template>
   
 <script>
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
+
 import CategoryCard from '@/components/cards/CategoryCard.vue'
 
 export default {
   components: {
-    CategoryCard
+    CategoryCard,
+    Loading
   },
   data() {
     return {
-      categories: {}
+      categories: {},
+      isLoading: true
     }
   },
   created() {
@@ -34,6 +44,9 @@ export default {
         })
         .catch(error => {
           console.log('Error al obtener las categorias', error);
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     },
   }

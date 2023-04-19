@@ -3,7 +3,7 @@
     <SideMenu />
     <div class="main-container">
       <Header />
-      <router-view/>
+      <router-view />
       <Footer />
     </div>
   </div>
@@ -21,7 +21,7 @@ export default {
   components: {
     SideMenu,
     Header,
-    Footer
+    Footer,
   },
   created() {
     this.getUser();
@@ -36,7 +36,7 @@ export default {
         })
         .catch(error => {
           console.log(error);
-        });
+        })
     },
   }
 }
