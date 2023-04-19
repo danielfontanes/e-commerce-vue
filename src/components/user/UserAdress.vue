@@ -19,7 +19,11 @@
           <p><span>Código postal: </span>{{ user.address.postalCode }}</p>
         </div>
       </div>
-      <Map :lat="13" :lng="14" class="mt-4" />
+      <Map 
+        :lat="13" 
+        :lng="14" 
+        class="mt-4"
+      />
     </div>
 
 
@@ -44,11 +48,10 @@ export default {
 </script>
 
 <style scoped>
-span {
+.user-adress-info span {
   font-weight: bold;
 }
-
-svg {
+.user-adress-info svg {
   width: 1.25rem;
   margin-right: 0.5rem;
 }

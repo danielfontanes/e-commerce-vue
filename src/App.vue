@@ -23,7 +23,7 @@ export default {
     Header,
     Footer
   },
-  mounted() {
+  created() {
     this.getUser();
   },
   methods: {
@@ -56,6 +56,10 @@ export default {
   --teciariary-color: rgb(70, 70, 70);
   --accent-color: #00A69C;
   --accent-color-hover: #00c9bc;
+  --soft-color: lightgray;
+  --soft-color-bg: #F6F6F6;
+
+  --text-soft-color: gray;
   
   /* Radius */
   --border-radius-m: 1rem;

@@ -9,12 +9,16 @@
       <h2 class="fw-bold fs-5">Información Bancaria</h2>
     </div>
     <div>
-      <div class="d-flex">
-        <p class="w-50"><span>IBAN: </span>{{ user.bank.iban }}</p>
-        <p class="w-50"><span>Moneda: </span>{{ user.bank.currency }}</p>
+      <div>
+        <p><span>IBAN: </span>{{ user.bank.iban }}</p>
+        <p><span>Moneda: </span>{{ user.bank.currency }}</p>
       </div>
-      <BankCard :cardExpire="user.bank.cardExpire" :cardNumber="user.bank.cardNumber" :cardType="user.bank.cardType"
-        class="mt-4" />
+      <BankCard 
+        :cardExpire="user.bank.cardExpire" 
+        :cardNumber="user.bank.cardNumber" 
+        :cardType="user.bank.cardType"
+        class="mt-4" 
+      />
     </div>
   </div>
 </template>
@@ -36,11 +40,11 @@ export default {
 </script>
 
 <style scoped>
-span {
+.user-bank-info span {
   font-weight: bold;
 }
 
-svg {
+.user-bank-info svg {
   width: 1.25rem;
   margin-right: 0.5rem;
 }

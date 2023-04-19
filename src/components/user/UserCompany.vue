@@ -22,7 +22,11 @@
           <p><span>Estado: </span>{{ user.company.address.state }}</p>
         </div>
       </div>
-      <Map :lat="13" :lng="14" class="mt-4" />
+      <Map 
+        :lat="13" 
+        :lng="14" 
+        class="mt-4" 
+      />
     </div>
   </div>
 </template>
@@ -44,11 +48,10 @@ export default {
 </script>
 
 <style scoped>
-span {
+.user-company-info span {
   font-weight: bold;
 }
-
-svg {
+.user-company-info svg {
   width: 1.25rem;
   margin-right: 0.5rem;
 }

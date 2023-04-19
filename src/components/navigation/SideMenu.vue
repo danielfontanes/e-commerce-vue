@@ -56,7 +56,7 @@ nav {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  border-right: 1px solid gray;
+  border-right: 1px solid var(--soft-color);
 }
 
 nav a {
