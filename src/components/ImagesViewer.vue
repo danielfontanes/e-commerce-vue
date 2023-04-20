@@ -19,7 +19,7 @@
       </svg>
     </div>
     <div class="preview-images">
-      <div v-for="(productImage, index) in images">
+      <div v-for="(productImage, index) in images" :key="index">
         <img 
           @mouseover="changeImage(index)" 
           :src="productImage" 

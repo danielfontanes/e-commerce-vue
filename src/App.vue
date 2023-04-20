@@ -3,7 +3,7 @@
     <SideMenu />
     <div class="main-container">
       <Header />
-      <router-view/>
+      <router-view />
       <Footer />
     </div>
   </div>
@@ -21,13 +21,13 @@ export default {
   components: {
     SideMenu,
     Header,
-    Footer
+    Footer,
   },
   created() {
     this.getUser();
   },
   methods: {
-    ...mapMutations(['loginUser']),
+    ...mapMutations( 'user', ['loginUser']),
     getUser() {
       fetch('https://dummyjson.com/users/1')
         .then(res => res.json())
@@ -36,7 +36,7 @@ export default {
         })
         .catch(error => {
           console.log(error);
-        });
+        })
     },
   }
 }

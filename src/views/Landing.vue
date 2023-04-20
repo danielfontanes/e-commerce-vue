@@ -1,7 +1,13 @@
 <template>
   <main class="home">
     <!-- USER INFO -->
-    <div class="user-info d-flex flex-column gap-4">
+    <Loading
+        :active.sync="isLoading"
+      />
+    <div
+      v-if="!isLoading" 
+      class="user-info d-flex flex-column gap-4"
+    >
       <div class="quote">
         <blockquote>
           <p>{{ quote.quote }}</p>
@@ -40,32 +46,29 @@
 </template>
 
 <script>
+import loadingMixin from '@/mixins/loadingMixin.js';
+
 import UserProfile from '@/components/user/UserProfile.vue';
 import UserAdress from '@/components/user/UserAdress.vue';
 import UserBank from '@/components/user/UserBank.vue';
 import UserCompany from '@/components/user/UserCompany.vue';
 import CategoryCard from '@/components/cards/CategoryCard.vue';
 
-import { mapState } from 'vuex';
-
 export default {
+  mixins: [loadingMixin],
   name: 'Landing',
   components: {
     UserProfile,
     UserAdress,
     UserBank,
     UserCompany,
-    CategoryCard
+    CategoryCard,
   },
   data() {
     return {
-      loading: true,
       quote: {},
       categories: []
     }
-  },
-  computed: {
-    ...mapState(['user']),
   },
   created() {
     this.GetAllData();
@@ -82,8 +85,9 @@ export default {
           console.log(error);
         })
         .finally(() => {
-          this.loading = false;
+          this.isLoading = false;
         });
+  
     },
     getQuote() {
       return fetch('https://dummyjson.com/quotes/random')
