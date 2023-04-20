@@ -1,33 +1,99 @@
 <template>
   <main>
-    <h1>This is an categorías page</h1>
-    <div v-for="(zapatilla, index) in zapatillas" :key="index">
-      <p>{{zapatilla.name}}</p>
-      <p>{{zapatilla.brand}}</p>
-      <p>{{zapatilla.category}}</p>
-      <button @click="addProduct(zapatilla)">ADD CART</button>
+    <Breadcrumb />
+    <h1>{{ categoryName ? categoryName : "Categoría" }}</h1>
+    <Loading
+        :active.sync="isLoading"
+    />
+    <div v-if="!isLoading">
+      <div v-if="products.length > 0" class="products-container">
+      <div v-for="(product, index) in paginatedProducts" :key="index">
+        <ProductCard 
+          :product="product"
+          :categoryName="categoryName"
+        />
+      </div>
+    </div>
+    <Pagination 
+      v-if="products.length > 0"
+      :currentPage.sync="currentPage"
+      :totalPages="totalPages"
+    />
+    <div v-if="products == 0">
+      <p>No hay productos disponibles para esta categoría</p>
+    </div>
     </div>
   </main>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import loadingMixin from '@/mixins/loadingMixin.js';
 
 export default {
-  name: 'HelloWorld',
+  mixins: [loadingMixin],
+  name: 'ProductsView',
+  components: {
+    Pagination: () => import('@/components/Pagination.vue'),
+    Breadcrumb: () => import('@/components/navigation/Breadcrumb.vue'),
+    ProductCard: () => import('@/components/cards/ProductCard.vue')
+  },
   props: {
-    msg: String
+    categoryName: {
+      type: String,
+      required: true,
+    }
   },
   data() {
     return {
-      zapatillas: [
-        { name: 'puma33', brand: 'puma', category: 'zapatillas' },
-        { name: 'adidas air', brand: 'adidas', category: 'zapatillas' }
-      ]
+      products: [],
+      currentPage: 1,
+      itemsPerPage: 3,
     }
   },
+  computed :{
+    paginatedProducts() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.products.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.products.length / this.itemsPerPage);
+    }
+  },
+  created() {
+    this.getProducts();
+  },
   methods: {
-    ...mapMutations(['addProduct'])
+    getProducts() {
+      fetch(`https://dummyjson.com/products/category/${this.categoryName}`)
+        .then(res => res.json())
+        .then(data => {
+          this.products = data.products;
+        })
+        .catch(error => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
+    },
   }
 }
 </script>
+<style scoped>
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  justify-items: center;
+  gap: 1rem;
+  margin: 4rem 0rem;
+}
+
+@media (max-width: 767px){
+  .products-container{
+    display: flex;
+    flex-direction: column;
+  }
+}
+</style>

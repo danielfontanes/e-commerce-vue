@@ -1,22 +1,35 @@
 <template>
   <main>
     <h1>CATEGORIES</h1>
-    <div class="categories-container">
-      <div v-for="(category, index) in categories" :key="index" class="category-card">
-        <h2>{{ category }}</h2>
+    <Loading
+        :active.sync="isLoading"
+    />
+    <div v-if="!isLoading">
+      <div  v-if="categories.length > 0" class="categories-container">
+        <CategoryCard v-for="(category, index) in categories" :key="index" :category="category" />
+      </div>
+      <div v-else>
+        <p>No se pudieron cargar las categorías. Inténtelo de nuevo más tarde.</p>
       </div>
     </div>
   </main>
 </template>
   
 <script>
+import loadingMixin from '@/mixins/loadingMixin.js';
+
 export default {
+  mixins: [loadingMixin],
+  name: 'CategoriesView',
+  components: {
+    CategoryCard: () => import('@/components/cards/CategoryCard.vue')
+  },
   data() {
     return {
-      categories: {}
+      categories: {},
     }
   },
-  mounted() {
+  created() {
     this.getCategories();
   },
   methods: {
@@ -27,7 +40,10 @@ export default {
           this.categories = data;
         })
         .catch(error => {
-          console.log(error);
+          console.log('Error al obtener las categorias', error);
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     },
   }
@@ -40,18 +56,14 @@ export default {
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
-
-.category-card {
-  display:grid;
-  place-items: center;
-  border: 1px solid #D5D9D9;
-  padding: 1rem;
-  border-radius: var(--border-radius-m);
-  aspect-ratio: 1;
-  text-transform: capitalize;
-}
-.category-card:hover{
-  background-color: var(--teciariary-color);;
-  color: white;
+@media screen and (max-width: 1450px) {
+  #app main{
+    width: auto;
+  }
+  .categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 </style>

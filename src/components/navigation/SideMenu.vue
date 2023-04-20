@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="side-menu">
     <button @click="menuCerrado = !menuCerrado">
       <svg v-if="menuCerrado" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
         <path fill-rule="evenodd"
@@ -34,63 +34,69 @@
 
 <script>
 export default {
+  name:'SideMenu',
   data() {
     return {
       menuCerrado: true,
     }
   }
 }
-
 </script>
 
 <style scoped>
-svg {
+.side-menu svg {
   width: 2rem;
-  color: var(--primary-color);
+  color: var(--accent-color);
 }
 
-nav {
+nav.side-menu
+{
   padding: 30px;
-  background-color: var(--teciariary-color);
+  background-color: var(--primary-color);
+  color: var(--accent-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  border-right: 1px solid var(--soft-color);
 }
 
-nav a {
+nav.side-menu
+a {
   font-weight: bold;
-  color: var(--primary-color);
+  border: 1px solid transparent;
   display: flex;
   align-items: center;
   padding: 1rem 1rem;
 }
 
-nav a.router-link-exact-active,
-nav a.router-link-exact-active svg {
-  color: var(--accent-color);
-  fill: var(--accent-color)
-}
 
-nav a.router-link-exact-active:hover,
-nav a.router-link-exact-active:hover svg {
-  color: var(--secondary-color);
-  fill: var(--secondary-color)
+nav.side-menu
+a.router-link-exact-active,
+nav.side-menu
+a.router-link-exact-active svg,
+nav.side-menu
+a:hover ,
+nav.side-menu
+a:hover svg,
+nav.side-menu
+button:hover {
+  color: var(--accent-color-hover);
+  fill: var(--accent-color-hover);
 }
-
-nav a:hover {
-  background-color: var(--primary-color);
+nav.side-menu
+a:hover{
   border-radius: 1rem;
-  color: var(--teciariary-color);
+  border: 1px solid var(--accent-color-hover);
 }
 
-nav a:hover svg {
-  fill: var(--teciariary-color);
+nav.side-menu
+button:hover{
+  background-color: transparent;
 }
-
-button {
+.side-menu button {
   background-color: transparent;
   border: none;
-  border-bottom: var(--primary-color) 1px solid;
   padding: 1rem;
-  margin-bottom: 1rem;
-}</style>
+  margin: 0rem 0rem 1rem 0rem;
+}
+</style>
