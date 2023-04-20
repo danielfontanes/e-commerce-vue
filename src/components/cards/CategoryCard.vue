@@ -41,4 +41,13 @@ a.category-card:hover {
   margin-bottom: 1rem;
   border-radius: 10px;
 }
+
+@media (max-width: 767px){
+  .category-image{
+    width:120px;
+  }
+  .category-card h2{
+    font-size: 0.7rem;
+  }
+}
 </style>

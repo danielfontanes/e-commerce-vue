@@ -26,7 +26,7 @@
       </div>
 
       <div class="user-recomended-categories card">
-        <div class="d-flex mb-2">
+        <div class="d-flex mb-3">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -132,7 +132,12 @@ export default {
     flex-direction: column;
   }
   .user-recomended-categories-container[data-v-a8baa566] {
-    grid-template-columns: repeat(1, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .card{
+    padding: 1rem;
   }
 }
 
