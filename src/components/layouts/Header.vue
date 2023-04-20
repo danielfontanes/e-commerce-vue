@@ -10,12 +10,11 @@
 
 <script>
 import { mapState } from 'vuex';
-import Cart from '@/components/Cart.vue'
 
 export default {
   name:'Header',
   components: {
-    Cart
+    Cart: () => import('@/components/Cart.vue')
   },
   computed: {
     ...mapState('user', ['user']),
@@ -49,7 +48,7 @@ header {
     width: auto;
   }
   .header-container img{
-    width: 35%;
+    width: 100px;
     height: auto;
   }
 }

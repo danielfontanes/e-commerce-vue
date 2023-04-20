@@ -1,6 +1,5 @@
 <template>
   <main class="home">
-    <!-- USER INFO -->
     <Loading
         :active.sync="isLoading"
       />
@@ -10,8 +9,8 @@
     >
       <div class="quote">
         <blockquote>
-          <p>{{ quote.quote }}</p>
-          <cite>{{ quote.author }}</cite>
+          <p class="mb-2">{{ quote.quote }}</p>
+          <cite class="fw-bold">{{ quote.author }}</cite>
         </blockquote>
       </div>
 
@@ -48,21 +47,15 @@
 <script>
 import loadingMixin from '@/mixins/loadingMixin.js';
 
-import UserProfile from '@/components/user/UserProfile.vue';
-import UserAdress from '@/components/user/UserAdress.vue';
-import UserBank from '@/components/user/UserBank.vue';
-import UserCompany from '@/components/user/UserCompany.vue';
-import CategoryCard from '@/components/cards/CategoryCard.vue';
-
 export default {
   mixins: [loadingMixin],
   name: 'Landing',
   components: {
-    UserProfile,
-    UserAdress,
-    UserBank,
-    UserCompany,
-    CategoryCard,
+    UserProfile: () => import('@/components/user/UserProfile.vue'),
+    UserAdress: () => import('@/components/user/UserAdress.vue'),
+    UserBank: () => import('@/components/user/UserBank.vue'),
+    UserCompany: () => import('@/components/user/UserCompany.vue'),
+    CategoryCard: () => import('@/components/cards/CategoryCard.vue'),
   },
   data() {
     return {
@@ -79,7 +72,7 @@ export default {
         .then(([quote, categories]) => {
           this.quote = quote;
           // Simulo que me llegan las categorias recomendadas
-          this.categories = categories.slice(0, 4);;
+          this.categories = categories.slice(0, 4);
         })
         .catch(error => {
           console.log(error);
@@ -87,7 +80,6 @@ export default {
         .finally(() => {
           this.isLoading = false;
         });
-  
     },
     getQuote() {
       return fetch('https://dummyjson.com/quotes/random')
@@ -135,10 +127,6 @@ export default {
   background-color: lightblue;
 }
 
-.home cite {
-  font-weight: bold;
-  margin-top: 1rem;
-}
 @media (max-width: 767px){
   .user-info-data{
     flex-direction: column;

@@ -12,16 +12,12 @@
 <script>
 import { mapMutations } from 'vuex';
 
-import SideMenu from '@/components/navigation/SideMenu.vue'
-import Header from '@/components/layouts/Header.vue'
-import Footer from './components/layouts/Footer.vue';
-
 export default {
   name: 'App',
   components: {
-    SideMenu,
-    Header,
-    Footer,
+    SideMenu: () => import('@/components/navigation/SideMenu.vue'),
+    Header: () => import('@/components/layouts/Header.vue'),
+    Footer: () => import('./components/layouts/Footer.vue'),
   },
   created() {
     this.getUser();

@@ -34,12 +34,10 @@
 <script>
 import { mapState } from 'vuex';
 
-import Map from '../Map.vue';
-
 export default {
   name: 'UserCompany',
   components: {
-    Map
+    Map: () => import('@/components/Map.vue')
   },
   computed: {
     ...mapState( 'user', ['user']),

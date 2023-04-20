@@ -59,10 +59,10 @@ export default {
 </script>
 
 <style scoped>
-span {
+.user-primary-info span {
   font-weight: bold;
 }
-svg {
+.user-primary-info svg {
   width: 1.25rem;
   margin-right: 0.5rem;
 }

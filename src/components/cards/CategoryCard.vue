@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <router-link :to="{ name: 'Products', params: { categoryName: category } }">
+    <router-link :to="{ name: 'Products', params: { categoryName: category } }" class="category-card">
       <div class="category-image" :style="{ 'background-image': `url(${categoryImages[category].img})`, 'background-size': 'cover' }"></div>
       <h2>{{ categoryImages[category].name }}</h2>
     </router-link>
-  </div>
 </template>
 
 <script>
@@ -23,7 +21,7 @@ export default {
 </script>
 
 <style scoped>
-a {
+a.category-card {
   display: grid;
   place-items: center;
   border: 1px solid var(--soft-color);
@@ -32,7 +30,7 @@ a {
   text-transform: capitalize;
 }
 
-a:hover {
+a.category-card:hover {
   background-color: var(--accent-color);
   color: var(--primary-color);
 }

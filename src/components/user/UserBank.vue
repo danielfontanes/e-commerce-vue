@@ -26,12 +26,10 @@
 <script>
 import { mapState } from 'vuex';
 
-import BankCard from '@/components/BankCard.vue';
-
 export default {
   name: 'UserBank',
   components: {
-    BankCard
+    BankCard: () => import('@/components/BankCard.vue')
   },
   computed: {
     ...mapState( 'user', ['user']),
