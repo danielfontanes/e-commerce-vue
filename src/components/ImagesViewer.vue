@@ -122,4 +122,10 @@ export default {
 .next-image {
   right: 0px;
 }
+
+@media (max-width: 767px){
+  .main-image{
+    height: 300px;
+  }
+}
 </style>

@@ -5,7 +5,7 @@
       :active.sync="isLoading"
     />
     <div v-if="!isLoading">
-      <div v-if="Object.keys(this.product).length > 0" class="product-detail-container d-flex gap-5">
+      <div v-if="productId != undefined" class="product-detail-container d-flex gap-5">
         <ImagesViewer
           :images="product.images" 
         />

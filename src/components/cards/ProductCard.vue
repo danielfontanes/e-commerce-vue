@@ -72,4 +72,10 @@ export default {
   max-width: 100%;
   max-height: 100%;
 }
+
+@media (max-width: 767px){
+  .product-card{
+    width: 100%;
+  }
+}
 </style>

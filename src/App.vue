@@ -94,8 +94,7 @@ export default {
     display: none;
   }
   #app main {
-  padding: 1rem;
-  width: 100%;
+    width: 100%;
   }
 }
 

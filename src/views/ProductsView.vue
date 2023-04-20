@@ -89,4 +89,11 @@ export default {
   gap: 1rem;
   margin: 4rem 0rem;
 }
+
+@media (max-width: 767px){
+  .products-container{
+    display: flex;
+    flex-direction: column;
+  }
+}
 </style>
