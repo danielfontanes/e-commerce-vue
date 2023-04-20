@@ -131,7 +131,7 @@ export default {
   .user-info-data{
     flex-direction: column;
   }
-  .user-recomended-categories-container[data-v-a8baa566] {
+  .user-recomended-categories-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
