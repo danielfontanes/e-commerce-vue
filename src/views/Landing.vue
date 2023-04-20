@@ -138,4 +138,14 @@ export default {
 .home cite {
   font-weight: bold;
   margin-top: 1rem;
-}</style>
+}
+@media (max-width: 767px){
+  .user-info-data{
+    flex-direction: column;
+  }
+  .user-recomended-categories-container[data-v-a8baa566] {
+    grid-template-columns: repeat(1, 1fr);
+}
+}
+
+</style>

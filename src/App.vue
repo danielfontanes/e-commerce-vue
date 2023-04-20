@@ -75,23 +75,6 @@ export default {
 
   display: flex;
 }
-
-.main-container {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-}
-
-
-/* GENERAL STYLES */
-* {
-  text-align: start;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 #app main {
   padding: 1rem;
   width: 1200px;
@@ -103,6 +86,31 @@ a {
   font-weight: bold;
   margin-bottom: 1rem;
   text-transform: capitalize;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+@media (max-width: 767px){
+  #app .side-menu{
+    display: none;
+  }
+  #app main {
+  padding: 1rem;
+  width: 100%;
+  }
+}
+
+
+/* GENERAL STYLES */
+* {
+  text-align: start;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 button{

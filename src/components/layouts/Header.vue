@@ -48,5 +48,9 @@ header {
   .header-container {
     width: auto;
   }
+  .header-container img{
+    width: 35%;
+    height: auto;
+  }
 }
 </style>
