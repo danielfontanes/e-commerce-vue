@@ -75,7 +75,7 @@ header {
 }
 
 .header-container img {
-  height: 100%;
+  max-height: 90px;
 }
 
 .mobile-menu nav {
