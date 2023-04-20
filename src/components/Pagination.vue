@@ -38,8 +38,13 @@ export default {
 .pagination{
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 .pagination span{
   width: 120px;
+  text-align: center;
+}
+.pagination button{
+  margin: 0;
 }
 </style>

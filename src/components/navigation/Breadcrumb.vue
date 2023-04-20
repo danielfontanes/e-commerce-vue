@@ -53,4 +53,9 @@ export default {
   width: 0.9rem;
   margin-left: 1rem;
 }
+@media (max-width: 767px){
+  .breadcrumb-e-commerce{
+    flex-wrap: wrap;
+  }
+}
 </style>

@@ -5,7 +5,7 @@
       :active.sync="isLoading"
     />
     <div v-if="!isLoading">
-      <div v-if="Object.keys(this.product).length > 0" class="d-flex gap-5">
+      <div v-if="Object.keys(this.product).length > 0" class="product-detail-container d-flex gap-5">
         <ImagesViewer
           :images="product.images" 
         />
@@ -116,5 +116,15 @@ export default {
 }
 .product-price{
   color: var(--text-soft-color);
+}
+
+@media (max-width: 767px){
+  .product-detail-container{
+    flex-direction: column;
+  }
+  div.images-container,
+  div.info-container{
+    width: 100%;
+  }
 }
 </style>

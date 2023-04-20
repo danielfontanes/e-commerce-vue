@@ -133,7 +133,7 @@ export default {
   }
   .user-recomended-categories-container[data-v-a8baa566] {
     grid-template-columns: repeat(1, 1fr);
-}
+  }
 }
 
 </style>
