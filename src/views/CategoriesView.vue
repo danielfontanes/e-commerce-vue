@@ -18,13 +18,11 @@
 <script>
 import loadingMixin from '@/mixins/loadingMixin.js';
 
-import CategoryCard from '@/components/cards/CategoryCard.vue'
-
 export default {
   mixins: [loadingMixin],
   name: 'CategoriesView',
   components: {
-    CategoryCard,
+    CategoryCard: () => import('@/components/cards/CategoryCard.vue')
   },
   data() {
     return {

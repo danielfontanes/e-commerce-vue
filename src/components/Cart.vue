@@ -23,12 +23,11 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex';
-import ItemCartPreview from '@/components/ItemCartPreview.vue'
 
 export default {
   name:'Cart',
   components: {
-    ItemCartPreview
+    ItemCartPreview: () => import('@/components/ItemCartPreview.vue')
   },
   data() {
     return {

@@ -49,7 +49,7 @@ export default {
   color: var(--text-soft-color);
   font-size: 0.9rem;
 }
-svg{
+.breadcrumb-e-commerce svg{
   width: 0.9rem;
   margin-left: 1rem;
 }

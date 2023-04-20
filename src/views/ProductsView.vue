@@ -29,17 +29,13 @@
 <script>
 import loadingMixin from '@/mixins/loadingMixin.js';
 
-import Pagination from '@/components/Pagination.vue';
-import Breadcrumb from '@/components/navigation/Breadcrumb.vue';
-import ProductCard from '@/components/cards/ProductCard.vue';
-
 export default {
   mixins: [loadingMixin],
   name: 'ProductsView',
   components: {
-    Pagination,
-    Breadcrumb,
-    ProductCard,
+    Pagination: () => import('@/components/Pagination.vue'),
+    Breadcrumb: () => import('@/components/navigation/Breadcrumb.vue'),
+    ProductCard: () => import('@/components/cards/ProductCard.vue')
   },
   props: {
     categoryName: {

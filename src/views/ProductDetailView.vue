@@ -43,17 +43,13 @@ import { mapMutations } from 'vuex';
 
 import loadingMixin from '@/mixins/loadingMixin.js';
 
-import Rating from '@/components/Rating.vue';
-import ImagesViewer from '@/components/ImagesViewer.vue';
-import Breadcrumb from '@/components/navigation/Breadcrumb.vue'
-
 export default {
   mixins: [loadingMixin],
   name: 'ProductDetailView',
   components: {
-    Rating,
-    ImagesViewer,
-    Breadcrumb,
+    Rating: () => import('@/components/Rating.vue'),
+    ImagesViewer: () => import('@/components/ImagesViewer.vue'),
+    Breadcrumb: () => import('@/components/navigation/Breadcrumb.vue')
   },
   props: {
     productId: {
