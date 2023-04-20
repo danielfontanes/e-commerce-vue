@@ -9,7 +9,8 @@
         <p>{{ product.brand }}</p>
       </div>
       <div class="product-price text-capitalize">
-        <p>{{ product.price }}€</p>
+        <p>{{ discountedPrice }}€</p>
+        <p class="product-price-with-discount text-decoration-line-through">{{ `${product.price}€` }} </p>
       </div>
     </div>
     <button @click.stop="addProduct(product)">Añadir</button>
@@ -30,6 +31,13 @@ export default {
       type: String,
       required: true,
     }
+  },
+  computed: {
+    discountedPrice() {
+      const discount = this.product.discountPercentage / 100;
+      const priceWithDiscount = this.product.price - (this.product.price * discount);
+      return priceWithDiscount.toFixed(2);
+    },
   },
   methods: {
     ...mapMutations('cart',['addProduct']),
@@ -63,6 +71,7 @@ export default {
   display: flex;
   justify-content: space-between;
   margin: 1rem;
+  height: 100%;
 }
 .product-card .info-container .product-price{
   font-size: 2rem;
@@ -72,7 +81,11 @@ export default {
   max-width: 100%;
   max-height: 100%;
 }
-
+.product-price-with-discount{
+  font-size: 1rem;
+  color: var(--text-soft-color);
+  text-align: end;
+}
 @media (max-width: 767px){
   .product-card{
     width: 100%;
